@@ -25,17 +25,39 @@ RSpec.describe Medusa do
   it 'turns a person to stone when staring at them' do
     medusa = Medusa.new('Cassiopeia')
     victim = Person.new('Perseus')
-
     expect(victim.stoned?).to be false
     medusa.stare(victim)
     expect(victim.stoned?).to be true
   end
 
   it 'can only have three victims' do
-    # your code here
+    medusa = Medusa.new("Cassiopeia")
+    victim_1 = Person.new("Perseus")
+    victim_2 = Person.new("Alex")
+    victim_3 = Person.new("Josh")
+    victim_4 = Person.new("Eliza")
+    medusa.stare(victim_1)
+    medusa.stare(victim_2)
+    medusa.stare(victim_3)
+    medusa.stare(victim_4)
+    expect(medusa.statues.length).to eq(3)
   end
 
   it 'if a fourth victim is stoned the first is unstoned' do
-    # your code here
+    medusa = Medusa.new("Cassiopeia")
+    victim_1 = Person.new("Perseus")
+    victim_2 = Person.new("Alex")
+    victim_3 = Person.new("Josh")
+    victim_4 = Person.new("Eliza")
+    medusa.stare(victim_1)
+    medusa.stare(victim_2)
+    medusa.stare(victim_3)
+    medusa.stare(victim_4)
+
+    expect(victim_1.stoned?).to be false
+    expect(victim_2.stoned?).to be true
+    expect(victim_3.stoned?).to be true
+    expect(victim_4.stoned?).to be true
+    expect(medusa.statues.length).to eq(3)
   end
 end
