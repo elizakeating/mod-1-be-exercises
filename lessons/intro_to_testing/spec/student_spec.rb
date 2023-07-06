@@ -30,3 +30,6 @@ describe Student do
     end
   end
 end
+
+# query method => method that returns some value
+# command method => methods that perform some action on some object
