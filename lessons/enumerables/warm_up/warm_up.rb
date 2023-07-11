@@ -1,13 +1,17 @@
 # 1. Using #each, add to the method below, such that it takes in an array of names, 
 # and returns an array of all names upcased.
 
-kardashians = ["kris", "kim", "kourtney", "khloe", "rob"]
+# kardashians = ["kris", "kim", "kourtney", "khloe", "rob"]
 
-def upcase_names(names)
- # your code here
-end 
+# def upcase_names(names)
+#     upcased = []
+#     names.each do |name|
+#         upcased << name.upcase
+#     end
+#     upcased
+# end 
 
-p upcase_names(kardashians)
+# p upcase_names(kardashians)
 
 # should return ["KRIS", "KIM", "KOURTNEY", "KHLOE", "ROB"]
 
@@ -16,33 +20,56 @@ p upcase_names(kardashians)
 
 
 
-# 2. Using #each, update the method below, such that it takes in an array of names,
-# and returns a collection of the names that end in 'ie'
+# # 2. Using #each, update the method below, such that it takes in an array of names,
+# # and returns a collection of the names that end in 'ie'
 
-pets = ["Brutus", "Lucky", "Goldie", "Pepper", "Odie"]
+# pets = ["Brutus", "Lucky", "Goldie", "Pepper", "Odie"]
 
-def names_ending_in_ie(names)
- # your code here
-end 
+# def names_ending_in_ie(names)
+#     ie_names = []
 
-p names_ending_in_ie(pets)
+#     names.each do |name|
+#         ie_names << name if name.end_with?("ie")
+#     end
 
-# should return an array of ["Goldie", "Odie"]
+#     ie_names
+# end 
+
+# p names_ending_in_ie(pets)
+
+# # should return an array of ["Goldie", "Odie"]
 
 
 
 
 
 
-# 3. Using #each, update the method below, such that it takes in an array of integers,
-# and returns the first number that is over 100 when squared. 
+# # 3. Using #each, update the method below, such that it takes in an array of integers,
+# # and returns the first number that is over 100 when squared. 
 
-nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+# nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
-def first_num_thats_square_is_above_100(nums)
+# def first_num_thats_square_is_above_100(nums)
+#     new_numbers = []
 
-end 
+#     nums.each do |num|
+#         new_numbers << num if num * num > 100
+#     end
+    
+#     new_numbers[0]
+# end 
 
-p first_num_thats_square_is_above_100(nums)
+# p first_num_thats_square_is_above_100(nums)
 
-# should return the integer 11
+# # should return the integer 11
+
+def find_small_guest_name
+    guest_list = ["Jerry", "Sheri", "Reed", "Tom"]
+
+    guest_list.find do |guest|
+        guest.size < 5
+    end
+
+end
+
+p find_small_guest_name
