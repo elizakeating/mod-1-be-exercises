@@ -74,8 +74,8 @@ require 'pry'
 ## Example 13
 
 # def print_variable(x)
-# x = 4
-# puts x
+#     x = 4
+#     puts x
 # end
 
 # print_variable(2)
@@ -133,7 +133,7 @@ require 'pry'
 ## Example 19
 
 # numbers = [1,2,3]
-# def number
+# def number # we don't actually call this (just same name), the number variable in the .each is SEPERATE
 #   0
 # end
 # numbers.each do |number|
