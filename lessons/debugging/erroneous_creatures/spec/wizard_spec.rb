@@ -26,7 +26,7 @@ RSpec.describe Wizard do
   end
 
   it "has root powers" do
-    wizard = Wizard.new("Sarah", bearded: false)
+    wizard = Wizard.new("Sarah", {bearded: false})
 
     expect(wizard.incantation("chown ~/bin")).to eq("sudo chown ~/bin")
   end
