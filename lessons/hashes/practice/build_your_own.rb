@@ -1,7 +1,18 @@
 # Your turn to create a hash. Make sure to use symbols for the keys.
 
 # Create your hash here
-
+new_band = Hash.new
+new_band[:bassist] = "tim"
+p new_band[:bassist]
+p new_band[:vocalist]
+p new_band[:vocalist] = "sally"
+p new_band[:drummer] = "rick"
+p new_band.keys #should return array
+p new_band.values #should return array
+new_band[:vocalist] = "jesse"
+p new_band.keys
+p new_band.values
+require 'pry';binding.pry
 # Steps
 # 1. Create a hash called new_band.
 # 2. Add a bassist to your new_band hash.
