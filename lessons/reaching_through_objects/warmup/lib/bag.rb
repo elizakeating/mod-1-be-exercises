@@ -1,12 +1,13 @@
 class Bag
-  attr_reader :candies
+  attr_accessor :candies
 
   def initialize
     @candies = []
   end
 
   def empty?
-    @candies.empty?
+    @candies.empty? # might get confusing have the two empty?
+    # @candies.count == 0 ? true : false
   end
 
   def count
@@ -22,5 +23,7 @@ class Bag
       candy.type
     end
     candy_type.include?(name)
+
+    # @candies.any { |candy| candy.type == name }
   end
 end
