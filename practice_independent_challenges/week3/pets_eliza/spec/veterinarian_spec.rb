@@ -54,7 +54,7 @@ RSpec.describe Veterinarian do
       vet.add_customer(todd)
       vet.add_customer(alex)
 
-      expect(vet.costumers).to eq([mary, todd, alex])
+      expect(vet.customers).to eq([mary, todd, alex])
     end
   end
 
