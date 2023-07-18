@@ -1,73 +1,37 @@
 require "./lib/pet"
 require "./lib/customer"
 require "./lib/groomer"
+require "./lib/day_care"
 
-RSpec.describe Groomer do
+RSpec.describe DayCare do
   describe "#initialize" do
     it "exists" do
-      groomer = Groomer.new("Abigal")
+      daycare = DayCare.new("Sunny Fields Day Care")
       
-      expect(groomer).to be_a Groomer
+      expect(daycare).to be_a DayCare
     end
   end
   
   describe "#name" do
-    it "returns groomer name" do
-      groomer = Groomer.new("Abigal")
+    it "returns day care name" do
+      daycare = DayCare.new("Sunny Fields Day Care")
       
-      expect(groomer.name).to eq("Abigal")
+      expect(daycare.name).to eq("Sunny Fields Day Care")
     end
   end
   
   describe "#customers" do
-    it "returns groomer's customers" do
-      groomer = Groomer.new("Abigal")
+    it "returns list of customers of day care" do
+      daycare = DayCare.new("Sunny Fields Day Care")
       
-      expect(groomer.customers).to eq([])
+      expect(daycare.customers).to eq([])
     end
   end
   
-  describe "#add_customer" do
-    it "gives the groomer a new customer" do
-      groomer = Groomer.new("Abigal")
-
-      samson = Pet.new({name: "Samson", type: :dog, age: 3})
-      fido = Pet.new({name: "Fido", type: :dog, age: 1})
-      chester = Pet.new({name: "Chester", type: :cat, age: 9})
-      peep = Pet.new({name: "Peep", type: :bird, age: 3})
-      marshall = Pet.new({name: "Marshall", type: :dog, age: 3})
-
-      mary = Customer.new("Mary", 1)
-      mary.adopt(chester)
-      mary.charge(14)
-
-      todd = Customer.new("Todd", 2)
-      todd.adopt(marshall)
-      todd.charge(10)
-      todd.adopt(samson)
-      todd.charge(11)
-
-      alex = Customer.new("Alex", 3)
-      alex.adopt(peep)
-      todd.charge(20)
-      alex.adopt(marshall)
-      todd.charge(10)
-
-      expect(groomer.customers).to eq([])
+  describe "#add customers" do
+    it "adds customers to the day care" do
+      daycare = DayCare.new("Sunny Fields Day Care")
       
-      groomer.add_customer(mary)
-      groomer.add_customer(todd)
-      groomer.add_customer(alex)
-      
-      expect(groomer.customers).to eq([mary, todd, alex])
-      expect(groomer.customers.first.pets).to eq([chester])
-    end
-  end
-
-  describe "#find_outstanding_balance" do
-    it "returns customers that have oustanding balance" do
-      groomer = Groomer.new("Abigal")
-
       samson = Pet.new({name: "Samson", type: :dog, age: 3})
       fido = Pet.new({name: "Fido", type: :dog, age: 1})
       chester = Pet.new({name: "Chester", type: :cat, age: 9})
@@ -79,30 +43,24 @@ RSpec.describe Groomer do
 
       todd = Customer.new("Todd", 2)
       todd.adopt(fido)
-      todd.charge(10)
       todd.adopt(samson)
-      todd.charge(11)
 
       alex = Customer.new("Alex", 3)
       alex.adopt(peep)
-      alex.charge(20)
       alex.adopt(marshall)
-      alex.charge(10)
 
-      expect(groomer.customers).to eq([])
-      
-      groomer.add_customer(mary)
-      groomer.add_customer(todd)
-      groomer.add_customer(alex)
+      daycare.add_customer(mary)
+      daycare.add_customer(todd)
+      daycare.add_customer(alex)
 
-      expect(groomer.find_outstanding_balances).to eq([todd, alex])
+      expect(daycare.customers).to eq([mary, todd, alex])
     end
   end
 
-  describe "#number_of_pet_type" do
-    it "returns the number of a specific pet type" do
-      groomer = Groomer.new("Abigal")
-
+  describe "#find_customer" do
+    it "finds customer by the customer id" do
+      daycare = DayCare.new("Sunny Fields Day Care")
+      
       samson = Pet.new({name: "Samson", type: :dog, age: 3})
       fido = Pet.new({name: "Fido", type: :dog, age: 1})
       chester = Pet.new({name: "Chester", type: :cat, age: 9})
@@ -114,25 +72,51 @@ RSpec.describe Groomer do
 
       todd = Customer.new("Todd", 2)
       todd.adopt(fido)
-      todd.charge(10)
       todd.adopt(samson)
-      todd.charge(11)
 
       alex = Customer.new("Alex", 3)
       alex.adopt(peep)
-      todd.charge(20)
       alex.adopt(marshall)
-      todd.charge(10)
 
-      expect(groomer.customers).to eq([])
+      daycare.add_customer(mary)
+      daycare.add_customer(todd)
+      daycare.add_customer(alex)
+
+      expect(daycare.find_customer(3)).to eq(alex)
+    end
+  end
+
+  describe "#unfed_pets" do
+    it "lists pets that are unfed" do
+      daycare = DayCare.new("Sunny Fields Day Care")
       
-      groomer.add_customer(mary)
-      groomer.add_customer(todd)
-      groomer.add_customer(alex)
+      samson = Pet.new({name: "Samson", type: :dog, age: 3})
+      fido = Pet.new({name: "Fido", type: :dog, age: 1})
+      chester = Pet.new({name: "Chester", type: :cat, age: 9})
+      peep = Pet.new({name: "Peep", type: :bird, age: 3})
+      marshall = Pet.new({name: "Marshall", type: :dog, age: 3})
 
-      expect(groomer.number_of_pet_type(:dog)).to eq(3)
-      expect(groomer.number_of_pet_type(:cat)).to eq(1)
-      expect(groomer.number_of_pet_type(:bird)).to eq(1)
+      mary = Customer.new("Mary", 1)
+      mary.adopt(chester)
+
+      todd = Customer.new("Todd", 2)
+      todd.adopt(fido)
+      todd.adopt(samson)
+
+      alex = Customer.new("Alex", 3)
+      alex.adopt(peep)
+      alex.adopt(marshall)
+
+      daycare.add_customer(mary)
+      daycare.add_customer(todd)
+      daycare.add_customer(alex)
+
+      expect(daycare.unfed_pets).to eq([chester, fido, samson, peep, marshall])
+
+      chester.feed
+      marshall.feed
+
+      expect(daycare.unfed_pets).to eq([fido, samson, peep])
     end
   end
 end
