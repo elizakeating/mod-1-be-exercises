@@ -85,9 +85,9 @@ RSpec.describe Groomer do
 
       alex = Customer.new("Alex", 3)
       alex.adopt(peep)
-      todd.charge(20)
+      alex.charge(20)
       alex.adopt(marshall)
-      todd.charge(10)
+      alex.charge(10)
 
       expect(groomer.customers).to eq([])
       
@@ -99,7 +99,7 @@ RSpec.describe Groomer do
     end
   end
 
-  xdescribe "#number_of_pet_type" do
+  describe "#number_of_pet_type" do
     it "returns the number of a specific pet type" do
       groomer = Groomer.new("Abigal")
 
