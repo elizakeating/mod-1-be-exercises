@@ -2,7 +2,7 @@
 
 module Barkable
 
-  def bark
+  def self.bark
     puts "#{@name} says, 'bark'."
   end
 

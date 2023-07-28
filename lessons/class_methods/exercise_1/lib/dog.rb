@@ -1,8 +1,8 @@
-#require 'barkable'
+require 'barkable'
 require 'pry'
 
 class Dog
-  #include Barkable
+  include Barkable
 
   attr_reader :name, :number_of_woofs
   def initialize(name)
@@ -24,7 +24,7 @@ class Dog
 
   def self.woof
     "Self woof!"
-    #binding.pry ## Can we call @number_of_woofs inside this class method? Why or why not?
+    #binding.pry ## Can we call @number_of_woofs inside this class method? Why or why not? no bs instance variables are undefined in class methods
   end
 
 end
