@@ -57,8 +57,8 @@ RSpec.describe Curator do
 
   describe "#add_photograph" do
     it "adds a photograph to the curator" do
-      curator.add_photograph(@photo_1)
-      curator.add_photograph(@photo_2)
+      @curator.add_photograph(@photo_1)
+      @curator.add_photograph(@photo_2)
 
       expect(@curator.photographs).to eq([@photo_1, @photo_2])
     end
@@ -66,8 +66,8 @@ RSpec.describe Curator do
 
   describe "#add_artist" do
     it "adds an artist to the curator" do
-      curator.add_photograph(@artist_1)
-      curator.add_photograph(@artist_2)
+      @curator.add_artist(@artist_1)
+      @curator.add_artist(@artist_2)
 
       expect(@curator.artists).to eq([@artist_1, @artist_2])
     end
@@ -75,8 +75,8 @@ RSpec.describe Curator do
 
   describe "#find_artist_by_id" do
     it "returns an artist based off of artist id" do
-      curator.add_photograph(@artist_1)
-      curator.add_photograph(@artist_2)
+      @curator.add_artist(@artist_1)
+      @curator.add_artist(@artist_2)
 
       expect(@curator.find_artist_by_id("1")).to eq(@artist_1)
     end
