@@ -9,8 +9,8 @@ class Chair < Furniture
   end
 
   def chair_type
-    short = "variable"
-    puts short
+    # short = "variable"
+    # puts short
     puts soft
   end
 
@@ -18,9 +18,9 @@ class Chair < Furniture
     "method"
   end
 
-  def soft
-    "class"
-  end
+  # def soft
+  #   "class"
+  # end
 
 end
 
