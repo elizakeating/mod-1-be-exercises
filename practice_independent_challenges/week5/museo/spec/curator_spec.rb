@@ -94,17 +94,6 @@ RSpec.describe Curator do
       expect(@curator.artists).to eq([@artist_1, @artist_2])
     end
   end
-
-  before(:each) do
-    @curator.add_photograph(@photo_1)
-    @curator.add_photograph(@photo_2)
-    @curator.add_photograph(@photo_3)
-    @curator.add_photograph(@photo_4)
-    
-    @curator.add_artist(@artist_1)
-    @curator.add_artist(@artist_2)
-    @curator.add_artist(@artist_3)
-  end
   
   describe "#find_artist_by_id" do
     it "returns an artist based off of artist id" do
@@ -117,6 +106,15 @@ RSpec.describe Curator do
   
   describe "#artist_photograph_list" do
     it "returns a list of all artists and their photographs" do
+      @curator.add_photograph(@photo_1)
+      @curator.add_photograph(@photo_2)
+      @curator.add_photograph(@photo_3)
+      @curator.add_photograph(@photo_4)
+      
+      @curator.add_artist(@artist_1)
+      @curator.add_artist(@artist_2)
+      @curator.add_artist(@artist_3)
+      
       expect(@curator.artist_photograph_list).to eq({
         @artist_1 => [@photo_1],
         @artist_2 => [@photo_2],
@@ -127,12 +125,30 @@ RSpec.describe Curator do
   
   describe "#artists_more_than_one_photo" do
     it "returns a list of names of artists who have more than one photograph" do
+      @curator.add_photograph(@photo_1)
+      @curator.add_photograph(@photo_2)
+      @curator.add_photograph(@photo_3)
+      @curator.add_photograph(@photo_4)
+      
+      @curator.add_artist(@artist_1)
+      @curator.add_artist(@artist_2)
+      @curator.add_artist(@artist_3)
+
       expect(@curator.artists_more_than_one_photo).to eq(["Diane Arbus"])
     end
   end
 
   describe "#country_photographs" do
     it "returns a list of photographs that were taken by a photographer from that country" do
+      @curator.add_photograph(@photo_1)
+      @curator.add_photograph(@photo_2)
+      @curator.add_photograph(@photo_3)
+      @curator.add_photograph(@photo_4)
+      
+      @curator.add_artist(@artist_1)
+      @curator.add_artist(@artist_2)
+      @curator.add_artist(@artist_3)
+      
       expect(@curator.country_photographs("United States")).to eq([@photo_2, @photo_3, @photo_4])
     end
   end
